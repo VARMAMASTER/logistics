@@ -10,7 +10,7 @@ import { JwtStrategy } from './jwtstrategy';
 @Module({
   imports:[MongooseModule.forFeature([{name:User.name,schema:UserSchema}]),  PassportModule.register({ defaultStrategy: 'jwt' }),  JwtModule.register({
     secret: '4dcc2aea-778e-4e55-9220-fabea4805212', 
-    signOptions: { expiresIn: '1h' }, 
+    signOptions: { expiresIn: '1h' },
   })],
   controllers: [AuthController],
   providers: [AuthService,JwtStrategy],

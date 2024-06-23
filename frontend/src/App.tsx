@@ -1,19 +1,15 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import { Box, Typography } from '@mui/material';
-import LoginForm from './Login/LoginForm';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { QueryClient, QueryClientProvider } from "react-query";
+import { RouterProvider } from "react-router-dom";
+import router from "./router/routes";
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient();
 
 function App() {
   return (
     <>
-        <QueryClientProvider client={queryClient}>
-    <LoginForm></LoginForm>
-    </QueryClientProvider>
-
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+      </QueryClientProvider>
     </>
   );
 }

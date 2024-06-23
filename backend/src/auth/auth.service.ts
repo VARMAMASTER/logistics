@@ -16,7 +16,6 @@ export class AuthService {
     const payload = { id: _id };
     return this.jwtService.sign(payload);
   }
-
   
   async create(createUserDto: CreateAuthDto): Promise<{ user: User; token: string }> {
     const createdUser = new this.userModel(createUserDto);

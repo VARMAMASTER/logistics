@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import Cookies from "cookies-js";
 
 export const http = axios.create({
   baseURL: process.env.REACT_APP_API_URL,
@@ -9,13 +9,15 @@ export const http = axios.create({
   },
 });
 
-// http.interceptors.request.use((config) => {
-//   const token = Cookies.get("access_token");
-//   if (token) {
-//     config.headers.Authorization = `Bearer ${token}`;
-//   }
-//   return config;
-// });
+
+http.interceptors.request.use((config) => {
+  const token = Cookies.get("access_token");
+
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
 
 http.interceptors.response.use(
   function (response) {
@@ -33,11 +35,4 @@ http.interceptors.response.use(
   }
 );
 
-// export const surePassHttp = axios.create({
-//   baseURL: process.env.REACT_APP_SUREPASS_API_URL,
-//   headers: {
-//     "Content-Type": "application/json",
-//     Accept: "application/json, text/plain, */*",
-//     Authorization: `Bearer ${process.env.REACT_APP_SUREPASS_TOKEN}` || "",
-//   },
-// });
+
